@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 import random
 import pandas as pd
 import time
-import datetime
 import os
 
 # these are inputs
@@ -51,21 +50,32 @@ browser.find_element_by_css_selector('[data-stid="apply-date-picker"]').click()#
 # hit the search button to pull up all the flights
 browser.find_element_by_css_selector('[data-testid="submit-button"]').click()
 
-time.sleep(15)
+time.sleep(15) # give it time to load
+
+# pull the ordered list from the html
 ol = browser.find_element_by_id("flightModuleList")
+# create list for each list item in the ordered list
 n = ol.find_elements_by_tag_name("li")
 for i in n:
     if 144 not in i.size.values():
-        n.remove(i)
+        n.remove(i) # remove ads/extranious cards
 length = len(n)
 
 descriptionText = []
 
 for i in range(length):
     z = n[i].text
-    descriptionText.append(z)
+    descriptionText.append(z) # temporary
+    # get the hidden text from each list item
 
 print(descriptionText)
+
+# TODO: here is a list of things that need to be done:
+# 1. instead of using a list use a pandas dataframe to store all the text
+# 2. Parse the text first by using \n as a delimiter
+# 3. Create a list of all the revelant data so price, duration, airlines, layovers, stops, times ...
+# 4. Create a google flights API key to get google flights data
+# 5. Create an additional script for kayak
 
 
 
