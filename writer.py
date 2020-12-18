@@ -16,4 +16,5 @@ def writer(newcity):
 def main():
     city = City("Kilifi",3.5107,39.9093,"Kenya")
     writer(city)
+    newcity = City("Shankar", 4.1239, 39.9093, "Tanzania")
 main()
