@@ -11,6 +11,8 @@ Origin = "Austin"
 Destination = "New York"
 Date = "Jan 12, 2021"
 
+## EXPEDIA ##
+
 dir_path = os.path.dirname(os.path.realpath(__file__)) # gets current directory path
 browser = webdriver.Chrome(executable_path=dir_path + "\\chromedriver.exe") # chrome driver is in current directory
 expedia = 'https://www.expedia.com/Flights?tpid=1&eapid=0' # base website
@@ -61,14 +63,14 @@ for i in n:
         n.remove(i) # remove ads/extranious cards
 length = len(n)
 
-descriptionText = []
+descriptionText_expedia = []
 
 for i in range(length):
     z = n[i].text
-    descriptionText.append(z) # temporary
+    descriptionText_expedia.append(z) # temporary
     # get the hidden text from each list item
 
-print(descriptionText)
+print(descriptionText_expedia)
 
 # TODO: here is a list of things that need to be done:
 # 1. instead of using a list use a pandas dataframe to store all the text
@@ -78,5 +80,37 @@ print(descriptionText)
 # 5. Create an additional script for kayak
 
 
+## Kayak ##
 
+Kayak = 'https://www.kayak.com/flights'
+browser.get(Kayak) # browser navigates to Kayak
+time.sleep(1)
+# Select one-way
+browser.find_element_by_xpath('/html/body/div[1]/div[1]/main/div[1]/div/div/div[1]/div/div/section[2]/div/div/div[1]/div[1]').click()
+time.sleep((.5))
+browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/ul/li[2]').click()
+time.sleep(.5)
 
+# check if there is a preselected city
+try:
+    browser.find_element_by_xpath('/html/body/div[1]/div[1]/main/div[1]/div/div/div[1]/div/div/section[2]/div/div/div[2]/form[1]/div[1]/div/div[1]/div/div[1]/div/div/div/div/div[1]/div/div[2]').click()
+    browser.find_element_by_xpath('/html/body/div[4]/div/div[2]/div[1]/div[3]/input').send_keys("\n")
+except:
+    pass
+
+# input origin city
+browser.find_element_by_xpath('/html/body/div[1]/div[1]/main/div[1]/div/div/div[2]').click()
+browser.find_element_by_xpath('/html/body/div[1]/div[1]/main/div[1]/div/div/div[1]/div/div/section[2]/div/div/div[2]/form[1]/div[1]/div/div[1]/div/div[1]/div/div/div').click()
+time.sleep(.1)
+browser.find_element_by_xpath('/html/body/div[4]/div/div[2]/div[1]/div[3]/input').send_keys(Origin+"\n")
+time.sleep(1)
+
+# input destination city
+browser.find_element_by_xpath('/html/body/div[1]/div[1]/main/div[1]/div/div/div[1]/div/div/section[2]/div/div/div[2]/form[1]/div[1]/div/div[1]/div/div[3]').click()
+browser.find_element_by_xpath('/html/body/div[5]/div/div[2]/div[1]/div[3]/input').send_keys(Destination+"\n")
+time.sleep(1)
+
+# input date
+browser.find_element_by_xpath('/html/body/div[1]/div[1]/main/div[1]/div/div/div[1]/div/div/section[2]/div/div/div[2]/form[1]/div[1]/div/div[1]/div/div[4]/div/div[1]/div/div').click()
+
+# For date to enter it u need to use the arrow keys so take the input date take the current date preset and then right arrow or left arrow in a loop untill you get to the right date
