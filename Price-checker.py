@@ -8,9 +8,8 @@ import os
 
 # these are inputs
 Origin = "Austin"
-Destination = "New York"
+Destination = "London"
 Date = "Jan 12, 2021"
-
 ## EXPEDIA ##
 
 dir_path = os.path.dirname(os.path.realpath(__file__)) # gets current directory path
@@ -76,7 +75,6 @@ print(descriptionText_expedia)
 # 1. instead of using a list use a pandas dataframe to store all the text
 # 2. Parse the text first by using \n as a delimiter
 # 3. Create a list of all the revelant data so price, duration, airlines, layovers, stops, times ...
-# 4. Create a google flights API key to get google flights data
 # 5. Create an additional script for kayak
 
 
