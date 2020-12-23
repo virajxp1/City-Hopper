@@ -12,21 +12,18 @@ class Flight(object):
 
 # str is a massive string representing webscraped flight data
 # The method outputs a list of objects 'flights' which contain arrival/departure location/time and price details for each flight
-def parser(str):
+def parser_expedia(flights):
     data = []
-    #Delete square brackets
-    str = str[2:-2]
-
-    # Split by ',' and create array of strings
-    flights = str.split("', '")
-
     for flight in flights:
-        row = flight.split("\\n")
-        times = row[2].split('-')
-        arrival,departure = times[0],times[1]
-        locations = row[3].split('-')
-        origin,destination = locations[0],locations[1]
-        price = row[-3][1:]
-        newflight = Flight(row[-5],departure,arrival,origin,destination,price,row[-6])
-        data.append(newflight)
+        if not (flight == None or len(flight) == 0):
+            row = flight.split("\n")
+            times = row[2].split('-')
+            if (times[1][-2:] == "+1"):
+                times[1] = times[1][:len(times[1]) - 2]
+            arrival, departure = times[0], times[1]
+            locations = row[3].split('-')
+            origin, destination = locations[0], locations[1]
+            price = row[-3][1:]
+            newflight = Flight(row[-5], departure, arrival, origin, destination, price, row[-6])
+            data.append(newflight)
     return data
