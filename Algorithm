@@ -1,0 +1,39 @@
+
+Get user input - run userinput script
+Create a look up table that connects cities to numbers
+example: austin to london paris and munich return to austin
+    Austin = 1 London = 2 ... lookup table will help us assign cities to array indicies
+
+Take the user inputed cities and run the scraper for each combination over all dates - store this in main - call this price_master
+    the format of this is a 4d matrix where pricemaster[i][j] points to another matrix of flight objects across a date range
+    ie say u want pricemaster of austin to london - that points to another matrix where the columns are dates and the rows are all the flights for that date
+
+Take the user inputed cities and run the distance finder script -call this distance_master
+    the format of this is a 2d matrix where distance_master[i][j] is the distance between city i and city j i,j are numbers that correspond to cities based on lookup table
+
+Now we want to create our graph
+    We will use an adjacency matrix since our graph is fully connected and directional - call this matrix graph
+    graph[i][j] == the cost of going from i to j
+    to calculate cost we run weighted function script passing in 2 paramaters distance_master price_master
+    weighting function will call another function that will take the price master and average it accordingly
+        Basically we are reducing the 4d matrix down to a 2d matrix
+        Now we have a 2 2d matricies we do a weighted average based on our specified weights for both distance and price
+        This results in a Graph to our liking
+    Return this graph
+
+Now we have our graph we need to run a cheapest path algorithm (Not Djkstras bcos it doesnt apply) probably a mincost algorithm so use prims/kruskals algorithm or maxflow algorithm so ford-fulkerson
+Shortest path algorithm will spit out to us an array with an order so for example [Austin,London,Paris,Munich,Austin] - Austin is both the Source and Sink node here
+Now we have an order we simply look up the flights that corresponds to this order and spit it out with all the information that goes along with the flight
+Done :)
+Now make it a front end application lul
+
+
+                    Hierarchy:
+
+                    Driver
+
+Scrapper Userinput GraphCreation DistanceFinder
+
+Parser             WeightingFunction    Reader
+
+

@@ -13,8 +13,7 @@ def writer(newcity):
         csv_writer = csv.writer(csv_file, delimiter=',')
         csv_writer.writerow([newcity.name,newcity.latitude,newcity.longitude,newcity.country])
 
-def main():
+def test():
     city = City("Kilifi",3.5107,39.9093,"Kenya")
     writer(city)
     newcity = City("Shankar", 4.1239, 39.9093, "Tanzania")
-main()
