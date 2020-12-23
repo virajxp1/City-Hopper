@@ -12,6 +12,7 @@ class Flight(object):
 
 # str is a massive string representing webscraped flight data
 # The method outputs a list of objects 'flights' which contain arrival/departure location/time and price details for each flight
+
 def parser_expedia(flights):
     data = []
     for flight in flights:
