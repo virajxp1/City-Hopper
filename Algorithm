@@ -28,12 +28,14 @@ Done :)
 Now make it a front end application lul
 
 
-                    Hierarchy:
+                        Hierarchy:
 
-                    Driver
+                        Driver
 
-Scrapper Userinput GraphCreation DistanceFinder
+Scrapper    Userinput   GraphCreation   DistanceFinder
 
-Parser             WeightingFunction    Reader
+Price-Checker           WeightingFunction    Reader
+
+Parser
 
 
