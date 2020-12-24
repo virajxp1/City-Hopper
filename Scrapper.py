@@ -1,13 +1,16 @@
 import numpy as np
 import datetime
-
+from Pricechecker import *
+from scrapeparser import Flight
 def createPriceMaster(Cities,startDate,lengthOfStays):
     # Cities = list of all the cities we have to go through
-    master = np.ndarray((len(Cities),len(Cities),sum(lengthOfStays),25))
+    master = np.ndarray((len(Cities),len(Cities),sum(lengthOfStays),25), dtype= np.ndarray)
     # our 4d array which stores top 25 flights^^^
 
     startDate = datetime.datetime.strptime(startDate, '%m/%d/%Y')
     # get next d days
+
+    dateConverter(startDate)
 
     Dates = []
     for d in range(0,sum(lengthOfStays)):
@@ -15,17 +18,43 @@ def createPriceMaster(Cities,startDate,lengthOfStays):
 
 
     # create a loop to go through the combinations
-    for i in range(Cities-1):
-        for j in range(i,Cities):
-            m = np.ndarray((sum(lengthOfStays),25))
-            for date in Dates:
-                #for each date create a matrix
-                print(date)
 
-Cities = ["London","Paris"]
-startDate = "1/23/2021"
-lengthOfStays = [4,3]
-Origin = "Austin"
-Cities.insert(0,Origin)
-Cities.append((Origin))
-createPriceMaster(Cities,startDate,lengthOfStays)
+    length = len(Cities)
+
+    for i in range(0,length-1):
+        for j in range(0,length-1):
+            if(Cities[i]!=Cities[j]):
+                m = np.ndarray((sum(lengthOfStays),25),dtype= Flight)
+                print(Cities[i], Cities[j])
+                for d in range(len(Dates)):
+                    #for each date create a matrix
+                    convertedDate = dateConverter(Dates[d])
+                    currentFlights = getFlights(Cities[i],Cities[j],convertedDate)
+                    currentFlights = currentFlights[:25]
+                    if(len(currentFlights) != 25):
+                        currentFlights.extend([None] * (25-len(currentFlights)))
+                    for x in range(0,25):
+                        m[d][x] = currentFlights[x]
+                    m[d][0].print()
+                #print(m)
+                master[i][j] = m
+    #Add a sort by price somewhere in the lower tier classes
+    return master
+
+def dateConverter(date):
+    # input is a datetime object
+    Months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    Days = np.arange(1,31)
+    convertedDate = Months[date.month+1] + " " + str(date.day) + ", " +str(date.year)
+    return convertedDate
+
+def funcTest():
+    Cities = ["London","Paris"]
+    startDate = "1/23/2021"
+    lengthOfStays = [1,2]
+    Origin = "Austin"
+    Cities.insert(0,Origin)
+    Cities.append((Origin+"- return"))
+    createPriceMaster(Cities,startDate,lengthOfStays)
+
+funcTest()

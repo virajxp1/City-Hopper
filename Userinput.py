@@ -33,4 +33,4 @@ def GetUserInput():
     Origin = OriginCity()
     cities = get_cities()
     startDate, lengthOfStay = dates(cities)
-    return cities, startDate, lengthOfStay
+    return Origin, cities, startDate, lengthOfStay

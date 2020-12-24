@@ -8,8 +8,8 @@ import os
 
 def ExpediaScraper(Origin,Destination,Date):
     dir_path = os.path.dirname(os.path.realpath(__file__)) # gets current directory path
-
     browser = webdriver.Chrome(executable_path=dir_path + "\\chromedriver.exe") # chrome driver is in current directory
+    #browser.maximize_window()
     expedia = 'https://www.expedia.com/Flights?tpid=1&eapid=0' # base website
     browser.get(expedia) # browser navigates to expedia.com
 
@@ -38,9 +38,13 @@ def ExpediaScraper(Origin,Destination,Date):
     time.sleep(random.random()+.5)
     # input the date into the departure date field
     browser.find_element_by_css_selector('[data-stid="open-date-picker"]').click()
+
     dateSelectionString = '[aria-label="' + Date + '"]'
     time.sleep(random.random()+.5)
-    browser.find_element_by_css_selector(dateSelectionString).click() # select the date
+    dateButton = browser.find_element_by_css_selector(dateSelectionString) # select the date
+    browser.execute_script("arguments[0].scrollIntoView();", dateButton)
+    time.sleep(random.random()+.5)
+    dateButton.click()
     time.sleep(random.random()+.5)
     browser.find_element_by_css_selector('[data-stid="apply-date-picker"]').click()# select "Done"
 
@@ -108,3 +112,15 @@ def KayakScraper(Origin,Destination,Date):
 
 def GoogleFlightsApiScrapper():
     return None
+
+
+def getFlights(Origin,Destination,Date):
+    ExpediaFlights = ExpediaScraper(Origin,Destination,Date)
+    return ExpediaFlights
+
+
+def scrapperTest():
+    Origin = "Austin"
+    Destination = "New York"
+    Date = "Sep 12, 2021"
+    ExpediaScraper(Origin,Destination,Date)
