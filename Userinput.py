@@ -16,7 +16,7 @@ def get_cities():
 def dates(cities):
     # date needs to be in this format
     print("Enter your prefered start date:")
-    startDate = input("Month Day, Year \nexample 'Jan 12, 2021' \n\n")
+    startDate = input("Month/Day/Year \nexample '01/01/2021' \n\n")
     lengthOfStay = []
     print("\n")
     for city in cities:
@@ -24,7 +24,13 @@ def dates(cities):
     return startDate, lengthOfStay
 
 
+def OriginCity():
+    print("Enter your Origin city:\n")
+    Origin = input()
+    return Origin
+
 def GetUserInput():
+    Origin = OriginCity()
     cities = get_cities()
     startDate, lengthOfStay = dates(cities)
     return cities, startDate, lengthOfStay
