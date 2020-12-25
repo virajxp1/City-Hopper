@@ -24,6 +24,8 @@ Now we want to create our graph
 Now we have our graph we need to run a cheapest path algorithm (Not Djkstras bcos it doesnt apply) probably a mincost algorithm so use prims/kruskals algorithm or maxflow algorithm so ford-fulkerson
 Shortest path algorithm will spit out to us an array with an order so for example [Austin,London,Paris,Munich,Austin] - Austin is both the Source and Sink node here
 Now we have an order we simply look up the flights that corresponds to this order and spit it out with all the information that goes along with the flight
+
+Now we need to add error handling and then ...
 Done :)
 Now make it a front end application lul
 
