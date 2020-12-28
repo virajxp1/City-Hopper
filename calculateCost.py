@@ -15,7 +15,7 @@ def price_component(priceMaster):
     return price_weights
 
 
-def distance_component():
+def distance_component(distanceMaster):
     # creates the distance graph
     return None
 

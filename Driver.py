@@ -2,6 +2,7 @@
 from Scrapper import createPriceMaster
 from calculateCost import *
 from Graph import solve
+from Distancefinder import createDistanceMaster
 
 def Main():
     # simulation data delete later
@@ -11,19 +12,20 @@ def Main():
     Origin = "Austin"
     Cities.insert(0,Origin)
 
-    # put userinput here
+    # put user input here
 
     priceMaster = createPriceMaster(Cities,startDate,lengthOfStays)
     price_weights = price_component(priceMaster) # prices have been averaged out
     print(price_weights)
 
     # calculate distances
+    distanceMaster = createDistanceMaster(Cities)
 
     # call calculateCost.py . distance_component
+    distance_weights = distance_component(distanceMaster)
 
     # call calculateCost.py . createGraph
-
-    Graph = create_graph(price_weights,None)
+    Graph = create_graph(price_weights,distance_weights)
 
     # get the encoded solution by calling Graph.py.
 

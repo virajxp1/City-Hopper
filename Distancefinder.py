@@ -21,3 +21,6 @@ def distancefinder(city1,state1,country1,city2,state2,country2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     d = R * c  # output distance in meters
     return d
+
+def createDistanceMaster(Cities):
+    return None
