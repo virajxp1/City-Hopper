@@ -10,13 +10,13 @@ class Flight(object):
         self.price = price
         self.layovers = layovers
     def print(self):
-        print("Airlines:" + self.airlines + " From:" +self.origin + " To:" + self.destination + "\n")
-        print("Departs at:" + self.departure_time + "Arrives at:" + self.arrival_time + "\n")
-        print("Layover:" + self.layovers)
-        print("\nPrice: $"+ self.price)
+        print("Airlines: " + self.airlines + " From: " +self.origin + "To:" + self.destination + "")
+        print("Departs at:" + self.departure_time + " Arrives at:" + self.arrival_time + "")
+        print("Layover: " + self.layovers)
+        print("Price: $"+ self.price)
 
-# str is a massive string representing webscraped flight data
-# The method outputs a list of objects 'flights' which contain arrival/departure location/time and price details for each flight
+# str is a massive string representing webscraped flight data The method outputs a list of objects 'flights' which
+# contain arrival/departure location/time and price details for each flight
 
 def parser_expedia(flights):
     data = []
@@ -34,9 +34,5 @@ def parser_expedia(flights):
             price = row[-3][1:]
             newflight = Flight(row[-5], departure, arrival, origin, destination, price, row[5])
             data.append(newflight)
-    data = flightSort(data)
     return data
 
-def flightSort(data):
-    newlist = sorted(data, key=lambda x: x.price, reverse=True)
-    return newlist

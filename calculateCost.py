@@ -21,5 +21,5 @@ def distance_component(distanceMaster):
 
 
 def create_graph(price_weights, distance_weights):
-    # creates optimal distance graph
+    # creates optimal graph by weighing both price and distance metrics
     return price_weights
