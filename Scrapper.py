@@ -16,13 +16,12 @@ def createPriceMaster(Cities,startDate,lengthOfStays):
     for d in range(0,sum(lengthOfStays)):
         Dates.append(startDate+datetime.timedelta(days=d))
 
-
     # create a loop to go through the combinations
 
     length = len(Cities)
 
-    for i in range(0,length-1):
-        for j in range(0,length-1):
+    for i in range(0,length):
+        for j in range(0,length):
             if(Cities[i]!=Cities[j]):
                 m = np.ndarray((sum(lengthOfStays),25),dtype= Flight)
                 print(Cities[i], Cities[j])
@@ -36,7 +35,6 @@ def createPriceMaster(Cities,startDate,lengthOfStays):
                     for x in range(0,25):
                         m[d][x] = currentFlights[x]
                     m[d][0].print()
-                #print(m)
                 master[i][j] = m
     #Add a sort by price somewhere in the lower tier classes
     return master
@@ -47,14 +45,3 @@ def dateConverter(date):
     Days = np.arange(1,31)
     convertedDate = Months[date.month+1] + " " + str(date.day) + ", " +str(date.year)
     return convertedDate
-
-def funcTest():
-    Cities = ["London","Paris"]
-    startDate = "1/23/2021"
-    lengthOfStays = [1,2]
-    Origin = "Austin"
-    Cities.insert(0,Origin)
-    Cities.append((Origin+"- return"))
-    createPriceMaster(Cities,startDate,lengthOfStays)
-
-funcTest()

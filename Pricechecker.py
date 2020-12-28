@@ -8,7 +8,7 @@ import os
 
 def ExpediaScraper(Origin,Destination,Date):
     dir_path = os.path.dirname(os.path.realpath(__file__)) # gets current directory path
-    browser = webdriver.Chrome(executable_path=dir_path + "\\chromedriver.exe") # chrome driver is in current directory
+    browser = webdriver.Chrome(executable_path=dir_path + "\\chromedriver.exe") # chrome driver is in current direc   tory
     #browser.maximize_window()
     expedia = 'https://www.expedia.com/Flights?tpid=1&eapid=0' # base website
     browser.get(expedia) # browser navigates to expedia.com
@@ -51,7 +51,7 @@ def ExpediaScraper(Origin,Destination,Date):
     # hit the search button to pull up all the flights
     browser.find_element_by_css_selector('[data-testid="submit-button"]').click()
 
-    time.sleep(10) # give it time to load
+    time.sleep(11) # give it time to load
 
     # pull the ordered list from the html
     ol = browser.find_element_by_id("flightModuleList")
@@ -117,10 +117,3 @@ def GoogleFlightsApiScrapper():
 def getFlights(Origin,Destination,Date):
     ExpediaFlights = ExpediaScraper(Origin,Destination,Date)
     return ExpediaFlights
-
-
-def scrapperTest():
-    Origin = "Austin"
-    Destination = "New York"
-    Date = "Sep 12, 2021"
-    ExpediaScraper(Origin,Destination,Date)
