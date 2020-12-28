@@ -51,7 +51,14 @@ def solve(Graph):
     g = {}
     p = []
     Solution = []
-    return TSP(Graph,data,n,g,p,Solution)
+    solution = TSP(Graph,data,n,g,p,Solution)
+    solution.append(1)
+    solution.insert(0, 1)
+    solution = np.array(solution)
+    solution = solution - 1
+    return solution
+    # Solution is the unmaped path
+
 
 def test():
     matrix = [
@@ -59,12 +66,6 @@ def test():
         [694, 0, 148],
         [693, 134, 0],
     ]
-    solution = solve(matrix)
-    solution.append(1)
-    solution.insert(0,1)
-    solution = np.array(solution)
-    solution = solution-1
-    # Solution is the unmaped path
-    # print(solution)
+    print(solve(matrix))
 
 test()
