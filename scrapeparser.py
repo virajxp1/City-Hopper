@@ -34,4 +34,9 @@ def parser_expedia(flights):
             price = row[-3][1:]
             newflight = Flight(row[-5], departure, arrival, origin, destination, price, row[5])
             data.append(newflight)
+    data = flightSort(data)
     return data
+
+def flightSort(data):
+    newlist = sorted(data, key=lambda x: x.price, reverse=True)
+    return newlist

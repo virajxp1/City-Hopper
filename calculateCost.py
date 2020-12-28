@@ -22,4 +22,4 @@ def distance_component():
 
 def create_graph(price_weights, distance_weights):
     # creates optimal distance graph
-    return None
+    return price_weights
