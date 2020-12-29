@@ -40,10 +40,13 @@ def Main():
         dest = optimalPath[i + 1]
         flights = priceMaster[start][dest]  # matrix of all flights
         flights = flights[d, :]
-        flights = flights[:5]
+        flights = flights[:15]
         flights = flights[flights is not None]
         d += lengthOfStays[dest - 1]
-        minFlight = getMinFlight(flights)
+        leavingOrigin = False
+        if start == 0:
+            leavingOrigin = True
+        minFlight = getMinFlight(flights,leavingOrigin)
         optimalFlights.append(minFlight)
 
     # print out everything
@@ -75,6 +78,5 @@ def Main():
 
     for flight in optimalFlights:
         flight.print()
-
 
 Main()
