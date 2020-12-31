@@ -52,7 +52,7 @@ def ExpediaScraper(Origin,Destination,Date):
     # hit the search button to pull up all the flights
     browser.find_element_by_css_selector('[data-testid="submit-button"]').click()
 
-    time.sleep(12) # give it time to load
+    time.sleep(15) # give it time to load
 
     # pull the ordered list from the html
     ol = browser.find_element_by_id("flightModuleList")
