@@ -8,7 +8,8 @@ import os
 
 def ExpediaScraper(Origin,Destination,Date):
     dir_path = os.path.dirname(os.path.realpath(__file__)) # gets current directory path
-    browser = webdriver.Chrome(executable_path=dir_path + "\\chromedriver.exe") # chrome driver is in current direc   tory
+    cwd = os.getcwd() + "/chromedriver 2"
+    browser = webdriver.Chrome(executable_path=cwd) # chrome driver is in current directory
     #browser.maximize_window()
     expedia = 'https://www.expedia.com/Flights?tpid=1&eapid=0' # base website
     browser.get(expedia) # browser navigates to expedia.com
