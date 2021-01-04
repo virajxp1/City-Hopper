@@ -1,5 +1,7 @@
 import math
 from reader import reader
+
+
 #Finds distance between two cities given two city names
 def distancefinder(city1,state1,country1,city2,state2,country2):
     master = reader()
@@ -7,7 +9,7 @@ def distancefinder(city1,state1,country1,city2,state2,country2):
         if x.name == city1 and x.country == country1 and x.state == state1:
             lat1 = x.latitude
             lon1 = x.longitude
-        elif x.name == city2 and x.country == country2:
+        elif x.name == city2 and x.country == country2 and x.state == state2:
             lat2 = x.latitude
             lon2 = x.longitude
 

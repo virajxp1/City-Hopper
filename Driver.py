@@ -4,7 +4,6 @@ from calculateCost import *
 from Graph import solve
 from Distancefinder import createDistanceMaster
 
-
 def Main():
     # simulation data delete later
     Cities = ["New York"]
